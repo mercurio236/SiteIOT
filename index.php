@@ -30,7 +30,11 @@
                             
 							case "monitoramento":
 								include("monitoramento.php");
-                            break;
+							break;
+							
+							case "info":
+								include("info.php");
+							break;
 						}
 					?>
 				</div>
