@@ -86,6 +86,12 @@ $pesquisa_nome = mysqli_query($conn, $resultado_pes);
     if($qtd > 0){
       while($row = $res -> fetch_assoc()){
         print "foi encontrado " .$row["nomeUsuario"]. $row["setor"];
+        print "<tr>
+                            <th scope='row'>1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                        </tr>"
       }
       print "$qtd<p> usuários cadastrados</p>";
     }else{
