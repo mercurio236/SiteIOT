@@ -29,7 +29,7 @@
             </div>
             <div class="form-group col-md-6">
                 <label for="inputPassword4">Setor</label>
-                <input type="text" class="form-control" id="setorUsuario">
+                <input type="text" class="form-control" id="setorUsuario" name="setorUsuario">
             </div>
         </div>
         <div>

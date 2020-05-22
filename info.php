@@ -1,8 +1,8 @@
 <?php
 $nome = @$_REQUEST["nomeUsuario"];
-//$setor = $_REQUEST["setorUsuario"];
+$setor = $_REQUEST["setorUsuario"];
 
-        $sql = "insert into cadastro (nomeUsuario) values ('{$nome}')";
+        $sql = "insert into cadastro (nomeUsuario, setor) values ('{$nome}', '{$setor}')";
         $result = $conn ->query($sql);
     
         if($result==true){
