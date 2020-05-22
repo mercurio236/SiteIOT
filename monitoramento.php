@@ -64,10 +64,10 @@ $pesquisa_nome = mysqli_query($conn, $resultado_pes);
         <tbody>
             <tr>
                 <th scope='row'>1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>setor</td>
+                <td>Nome</td>
+                <td>Data</td>
+                <td>Hora</td>
+                <td>Setor</td>
             </tr>
         </tbody>
     </table>
