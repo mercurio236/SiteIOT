@@ -8,9 +8,6 @@
 </head>
 
 <body>
-    
-
-
 </body>
 
 </html>
@@ -19,13 +16,14 @@
 
 
 //$pesquisar = @$_REQUEST['pesquisar'];
-$resultado_pes = "SELECT * FROM cadastro";
-$pesquisa_nome = mysqli_query($conn, $resultado_pes);
+$resultado_pes = "SELECT * FROM cadastro";//select do banco de dados da tabela cadastro
+$pesquisa_nome = mysqli_query($conn, $resultado_pes); //conexao com o banco de dados
 
-  $sql = "SELECT * FROM `cadastro` ORDER BY `cadastro`.`nomeUsuario`. `setor`. DESC";
-  $res = $conn -> query($resultado_pes);
-  $qtd = $res -> num_rows;
+  $sql = "SELECT * FROM `cadastro` ORDER BY `cadastro`.`nomeUsuario`. `setor`. DESC"; //ordenando o select
+  $res = $conn -> query($resultado_pes); //resposta do banco de dados
+  $qtd = $res -> num_rows; //exibir a quantidade de cadastrados
 
+  //estilo de exibição de pesquisa
   print "
   <div class='container' style='margin-top: 8%;'>
         <!--foi colocado um style na tag para afastar as tabelas do topo-->
@@ -51,9 +49,10 @@ $pesquisa_nome = mysqli_query($conn, $resultado_pes);
             </div>
   
   ";
+  //pesquisa do banco com resultado de quantidade
   while($rows_pesquisa = mysqli_fetch_array($pesquisa_nome)){
     
-    if($qtd > 0){
+    if($qtd > 0){//se o valor for maior que zero vai exibir
       while($row = $res -> fetch_assoc()){
         //print "foi encontrado " .$row["nomeUsuario"]. $row["setor"];
         print "
@@ -99,7 +98,7 @@ $pesquisa_nome = mysqli_query($conn, $resultado_pes);
       }
      
     }else{
-      print "<p>Resultado não entrado</p>";
+      print "<p>Resultado não entrado</p>";//caso não tenha resultado para ser exibido
     }
   }
 
