@@ -5,7 +5,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
 </head>
 
 <body>
@@ -32,7 +31,7 @@ $pesquisa_nome = mysqli_query($conn, $resultado_pes);
         <!--foi colocado um style na tag para afastar as tabelas do topo-->
         <div class='row'>
 
-            <div class='col-6'>
+            <div class='col'>
                <!--Tabela de entrada, aqui defeine a largura do Grid em 50% -->
                 <h2 style='text-align:center;'>Entrada</h2>
                 <!--Titulo da tabela-->
@@ -40,11 +39,12 @@ $pesquisa_nome = mysqli_query($conn, $resultado_pes);
                     <!-- aqui inicia a tabela de saída-->
                     <thead>
                         <tr>
-                            <th scope='col'>#</th>
-                            <th scope='col'>Nome</th>
-                            <th scope='col'>Data</th>
-                            <th scope='col'>Hora</th>
-                            <th scope='col'>Setor</th>
+                            <th scope='col'  style='width:3.7%;'>$qtd</th>
+                            <th scope='col'  style='width:34.1%;'>Nome</th>
+                            <th scope='col'  style='width:11.4%;'>Data</th>
+                            <th scope='col'  style='width:11.3%;'>Hora</th>
+                            <th scope='col'  style='width:28.4%;'>Setor</th>
+                            <th scope='col'>Card</th>
                         </tr>
                     </thead>
                 </table>
@@ -59,15 +59,16 @@ $pesquisa_nome = mysqli_query($conn, $resultado_pes);
         print "
         <div class='container' style='margin-top: -1.5%;'>
         <div class='row'>
-        <div class='col-6'>
+        <div class='col-12'>
         <table class='table table-striped table-bordered'>
         <tbody>
             <tr>
-                <th scope='row'>1</th>
-                <td>Nome</td>
-                <td>Data</td>
-                <td>Hora</td>
-                <td>Setor</td>
+                <th scope='row' style='width:3%;'>$row[idUsuario]</th>
+                <td style='width:30%;'>$row[nomeUsuario]</td>
+                <td style='width:10%;'>Data</td>
+                <td style='width:10%;'>Hora</td>
+                <td style='width:25%;'>$row[setor]</td>
+                <td style='width:10%;'>$row[Card_Cad]</td>
             </tr>
         </tbody>
     </table>
