@@ -15,7 +15,7 @@
   	<a class="nav-link" style="color:white;" href="index.php?page=monitoramento">Monitoramento</a>
 </nav>
 
-<!--Transição entre as paginas -->
+<!--Transição entre as paginas teste -->
 <div class="container">
 			<div class="row">
 				<div class="col-lg-12">
