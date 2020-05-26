@@ -1,8 +1,8 @@
 <?php
 $nome = @$_REQUEST["nomeUsuario"];//varivel para armazenar o campo para cadastrar no banco
-$setor = $_REQUEST["setorUsuario"];//variavel para cadastrar o que está no campo em html
+$setor = $_POST["setorUsuario"];//variavel para cadastrar o que foi selecionado no elemento select
 
-        $sql = "insert into cadastro (nomeUsuario, setor) values ('{$nome}', '{$setor}')";//insere no banco
+        $sql = "insert into cadastro (nomeUsuario, idSetor) values ('{$nome}', {$setor})";//insere no banco
         $result = $conn ->query($sql);//faz a conexão com o banco
     
         if($result==true){//mensagem de cadastro bem sucessedido no banco

@@ -28,8 +28,25 @@
                 <input type="text" class="form-control" id="nomeUsuario" name="nomeUsuario">
             </div>
             <div class="form-group col-md-6">
-                <label for="inputPassword4">Setor</label>
-                <input type="text" class="form-control" id="setorUsuario" name="setorUsuario">
+				<label for="inputPassword4">Setor</label>
+				<!--Inicializa elemento select de setores-->
+				<select name='setorUsuario' id='setorUsuario'>
+				<?php
+					$resultado_pes = "SELECT idSetor,nomeSetor FROM tb_setor"; // Select do banco de dados na tabela tb_table
+					$pesquisa_nome = mysqli_query($conn,$resultado_pes); //Conexão com o banco de dados
+					$res = $conn -> query($resultado_pes); //Resposta do banco de dados
+					$qtd = $res -> num_rows; //Pega quantidade de setores cadastrados
+					//Se houver setores cadastrados, constrói o elemento select dos setores
+					if ($qtd > 0){
+						while($row = $res -> fetch_assoc()){
+							print "
+							<option value=$row[idSetor]>$row[nomeSetor]</option>
+							";
+						}
+					}
+				?>
+				</select>
+                <!-- <input type="text" class="form-control" id="setorUsuario" name="setorUsuario"> -->
             </div>
         </div>
         <div>

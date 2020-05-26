@@ -16,7 +16,10 @@
 
 
 //$pesquisar = @$_REQUEST['pesquisar'];
-$resultado_pes = "SELECT * FROM cadastro";//select do banco de dados da tabela cadastro
+$resultado_pes = "SELECT c.idUsuario,c.nomeUsuario,s.nomeSetor,c.Card_Cad 
+				  FROM cadastro c
+				  INNER JOIN tb_setor s ON c.idSetor = s.idSetor
+				  ORDER BY c.idUsuario";//select do banco de dados da tabela cadastro com o um join na tabela tb_setor
 $pesquisa_nome = mysqli_query($conn, $resultado_pes); //conexao com o banco de dados
 
   $sql = "SELECT * FROM `cadastro` ORDER BY `cadastro`.`nomeUsuario`. `setor`. DESC"; //ordenando o select
@@ -66,7 +69,7 @@ $pesquisa_nome = mysqli_query($conn, $resultado_pes); //conexao com o banco de d
                 <td style='width:30%;'>$row[nomeUsuario]</td>
                 <td style='width:10%;'>Data</td>
                 <td style='width:10%;'>Hora</td>
-                <td style='width:25%;'>$row[setor]</td>
+                <td style='width:25%;'>$row[nomeSetor]</td>
                 <td style='width:10%;'>$row[Card_Cad]</td>
             </tr>
         </tbody>

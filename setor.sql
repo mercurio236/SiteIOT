@@ -29,25 +29,25 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cadastro` (
   `idUsuario` int(10) UNSIGNED NOT NULL,
+  `idSetor` int(10) UNSIGNED,
   `nomeUsuario` varchar(200) NOT NULL,
-  `setor` varchar(200) DEFAULT NULL,
   `Card_Cad` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `cadastro`
+-- Inserindo dados de teste na tabela `cadastro`
 --
 
-INSERT INTO `cadastro` (`idUsuario`, `nomeUsuario`, `setor`, `Card_Cad`) VALUES
-(1, 'Pedro Paulo Nascimento', 'Arquitetura', 'True'),
-(2, 'Ana Cristina de Paula', 'Eletronica', 'True'),
-(3, 'Arley Souto Aguiar', 'Segurança', 'true'),
-(4, 'Saulo Magalhaes de Paula', 'Desenvolvimento', 'true'),
-(5, 'Arley Souto Aguiar', 'Desenvolvimento', 'true'),
-(6, 'Arley Souto Aguiar', 'Engenharia de Software', 'true'),
-(7, 'Renato Nascimento Souza', 'IBTI', 'true'),
-(8, 'Maria das Graças de sousa', 'Sistemas de informação', 'true'),
-(9, 'Matheus de Freitas Magalhes', 'IBTI', NULL);
+INSERT INTO `cadastro` (`idUsuario`, `idSetor`, `nomeUsuario`, `Card_Cad`) VALUES
+(1, 1, 'Pedro Paulo Nascimento', 'True'),
+(2, 2, 'Ana Cristina de Paula', 'True'),
+(3, 1, 'Arley Souto Aguiar', 'true'),
+(4, 3, 'Saulo Magalhaes de Paula', 'true'),
+(5, 4, 'Arley Souto Aguiar', 'true'),
+(6, 4, 'Arley Souto Aguiar', 'true'),
+(7, 5, 'Renato Nascimento Souza', 'true'),
+(8, 6, 'Maria das Graças de sousa', 'true'),
+(9, 7, 'Matheus de Freitas Magalhes', NULL);
 
 -- --------------------------------------------------------
 
@@ -57,10 +57,10 @@ INSERT INTO `cadastro` (`idUsuario`, `nomeUsuario`, `setor`, `Card_Cad`) VALUES
 
 CREATE TABLE `entrada` (
   `idEntrada` int(11) NOT NULL,
+  `idSetor` int(10) UNSIGNED,
   `nomeEntrada` varchar(200) NOT NULL,
   `dataEntrada` date NOT NULL,
-  `horaEntrada` time NOT NULL,
-  `setorEntrada` varchar(200) NOT NULL
+  `horaEntrada` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -71,10 +71,10 @@ CREATE TABLE `entrada` (
 
 CREATE TABLE `saida` (
   `idSaida` int(11) NOT NULL,
+  `idSetor` int(10) UNSIGNED,
   `nomeSaida` varchar(200) NOT NULL,
   `dataSaida` date NOT NULL,
-  `horaSaida` time NOT NULL,
-  `setorSaida` varchar(200) NOT NULL
+  `horaSaida` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -87,6 +87,21 @@ CREATE TABLE `tb_setor` (
   `idSetor` int(10) UNSIGNED NOT NULL,
   `nomeSetor` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Inserindo dados de teste na tabela `tb_setor`
+--
+
+INSERT into `tb_setor`(`idSetor`,`nomeSetor`) VALUES
+(1,'Arquitetura'),
+(2,'Eletronica'),
+(3,'Segurança'),
+(4,'Desenvolvimento'),
+(5,'Engenharia de Software'),
+(6,'IBTI'),
+(7,'Sistemas da Informação'); 
+
+-- --------------------------------------------------------
 
 --
 -- Índices para tabelas despejadas
@@ -143,6 +158,25 @@ ALTER TABLE `saida`
 --
 ALTER TABLE `tb_setor`
   MODIFY `idSetor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  
+--
+-- Cria chave-estrangeira entre as tabelas de cadastro e tb_setor
+--
+ALTER TABLE `cadastro`
+ADD FOREIGN KEY (`idSetor`) REFERENCES `tb_setor`(`idSetor`);
+
+--
+-- Cria chave-estrangeira entre as tabelas de entrada e tb_setor
+--
+ALTER TABLE `entrada`
+ADD FOREIGN KEY (`idSetor`) REFERENCES `tb_setor`(`idSetor`);
+
+--
+-- Cria chave-estrangeira entre as tabelas de saida e tb_setor
+--
+ALTER TABLE `saida`
+ADD FOREIGN KEY (`idSetor`) REFERENCES `tb_setor`(`idSetor`);
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
