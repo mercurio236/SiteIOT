@@ -25,12 +25,12 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputEmail4">Nome completo</label>
-                <input type="text" class="form-control" id="nomeUsuario" name="nomeUsuario">
+                <input type="text" class="form-control" id="nomeUsuario" name="nomeUsuario" required>
             </div>
             <div class="form-group col-md-6">
-				<label for="inputPassword4">Setor</label>
-				<!--Inicializa elemento select de setores-->
-				<select name='setorUsuario' id='setorUsuario'>
+                <label for="inputPassword4">Setor</label>
+                <!--Inicializa elemento select de setores-->
+                <select name='setorUsuario' id='setorUsuario'>
 				<?php
 					$resultado_pes = "SELECT idSetor,nomeSetor FROM tb_setor"; // Select do banco de dados na tabela tb_table
 					$pesquisa_nome = mysqli_query($conn,$resultado_pes); //Conexão com o banco de dados
@@ -51,7 +51,7 @@
         </div>
         <div>
             <h4 style="margin-top: 2%;">Aproxime o cartão</h4>
-            <input type="button" id="cadastrarCard">
+            <input type="button" id="cadastrarCard" onclick="btnColor()">
         </div>
 
         <button type="submit" class="btn btn-primary" id="btnCard">Cadastrar</button>
