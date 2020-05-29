@@ -39,15 +39,15 @@ CREATE TABLE `cadastro` (
 --
 
 INSERT INTO `cadastro` (`idUsuario`, `idSetor`, `nomeUsuario`, `Card_Cad`) VALUES
-(1, 1, 'Pedro Paulo Nascimento', 'True'),
-(2, 2, 'Ana Cristina de Paula', 'True'),
-(3, 1, 'Arley Souto Aguiar', 'true'),
-(4, 3, 'Saulo Magalhaes de Paula', 'true'),
-(5, 4, 'Arley Souto Aguiar', 'true'),
-(6, 4, 'Arley Souto Aguiar', 'true'),
-(7, 5, 'Renato Nascimento Souza', 'true'),
-(8, 6, 'Maria das Graças de sousa', 'true'),
-(9, 7, 'Matheus de Freitas Magalhes', NULL);
+(1, 1, 'Pedro Paulo Nascimento', '111'),
+(2, 2, 'Ana Cristina de Paula', '222'),
+(3, 1, 'Arley Souto Aguiar', '333'),
+(4, 3, 'Saulo Magalhaes de Paula', '444'),
+(5, 4, 'Joao da Silva', '555'),
+(6, 4, 'Jose Maria', '666'),
+(7, 5, 'Renato Nascimento Souza', '777'),
+(8, 6, 'Maria das Graças de sousa', '888'),
+(9, 7, 'Matheus de Freitas Magalhes', '999');
 
 -- --------------------------------------------------------
 
@@ -58,6 +58,7 @@ INSERT INTO `cadastro` (`idUsuario`, `idSetor`, `nomeUsuario`, `Card_Cad`) VALUE
 CREATE TABLE `entrada` (
   `idEntrada` int(11) NOT NULL,
   `idSetor` int(10) UNSIGNED,
+  `idUsuario` int(10) UNSIGNED,
   `nomeEntrada` varchar(200) NOT NULL,
   `dataEntrada` date NOT NULL,
   `horaEntrada` time NOT NULL
@@ -72,6 +73,7 @@ CREATE TABLE `entrada` (
 CREATE TABLE `saida` (
   `idSaida` int(11) NOT NULL,
   `idSetor` int(10) UNSIGNED,
+  `idUsuario` int(10) UNSIGNED, 
   `nomeSaida` varchar(200) NOT NULL,
   `dataSaida` date NOT NULL,
   `horaSaida` time NOT NULL
@@ -160,22 +162,26 @@ ALTER TABLE `tb_setor`
   MODIFY `idSetor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
   
 --
--- Cria chave-estrangeira entre as tabelas de cadastro e tb_setor
+-- Cria chave-estrangeira entre as tabelas de `cadastro` e `tb_setor`
 --
 ALTER TABLE `cadastro`
 ADD FOREIGN KEY (`idSetor`) REFERENCES `tb_setor`(`idSetor`);
 
 --
--- Cria chave-estrangeira entre as tabelas de entrada e tb_setor
+-- Cria chave-estrangeira entre as tabelas de `entrada` e `tb_setor`
+-- Cria chave-estrangeira entre as tabelas de `entrada` e `cadastro`
 --
 ALTER TABLE `entrada`
-ADD FOREIGN KEY (`idSetor`) REFERENCES `tb_setor`(`idSetor`);
+ADD FOREIGN KEY (`idSetor`) REFERENCES `tb_setor`(`idSetor`),
+ADD FOREIGN KEY (`idUsuario`) REFERENCES `cadastro`(`idUsuario`);
 
 --
--- Cria chave-estrangeira entre as tabelas de saida e tb_setor
+-- Cria chave-estrangeira entre as tabelas de `saida` e `tb_setor`
+-- Cria chave-estrangeira entre as tabelas de `saida` e `cadastro`
 --
 ALTER TABLE `saida`
-ADD FOREIGN KEY (`idSetor`) REFERENCES `tb_setor`(`idSetor`);
+ADD FOREIGN KEY (`idSetor`) REFERENCES `tb_setor`(`idSetor`),
+ADD FOREIGN KEY (`idUsuario`) REFERENCES `cadastro`(`idUsuario`);
 
 COMMIT;
 
