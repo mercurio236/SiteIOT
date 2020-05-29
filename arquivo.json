@@ -1,0 +1,33 @@
+{
+    "app_id": "ibti-rfid",
+    "dev_id": "teste2",
+    "hardware_serial": "00CB0D294C334FEF",
+    "port": 1,
+    "counter": 0,
+    "confirmed": true,
+    "is_retry": true,
+    "payload_raw": "xzvDTQ==",
+    "payload_fields": {
+        "rfid": "C73BC34D"
+    },
+    "metadata": {
+        "time": "2020-05-28T18:53:30.394558703Z",
+        "frequency": 915.2,
+        "modulation": "LORA",
+        "data_rate": "SF7BW125",
+        "coding_rate": "4/5",
+        "gateways": [{
+            "gtw_id": "eui-b827ebffffd2476a",
+            "timestamp": 3645622323,
+            "time": "",
+            "channel": 0,
+            "rssi": -54,
+            "snr": 8.8,
+            "rf_chain": 0,
+            "latitude": -15.71084,
+            "longitude": -47.91088,
+            "altitude": 1075
+        }]
+    },
+    "downlink_url": "https://integrations.thethingsnetwork.org/ttn-us-west/api/v2/down/ibti-rfid/lora?key=ttn-account-v2.b5HZHWeC3DyZCA6XqT9_VpWuhmjJDEmdMrLNd50O13o"
+}

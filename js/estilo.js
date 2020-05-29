@@ -1,8 +1,14 @@
 let btnCard = document.getElementById('btnCard')
 let nomeUsuario = document.getElementById('nomeUsuario')
 let setorUsuario = document.getElementById('setorUsuario')
-let cadastrarCard = document.getElementById('cadastrarCard')
 
-function btnColor() {
-    document.cadastrarCard.style.backgroundColor = '#000';
+
+
+let Card = document.getElementById('cadastrarCard')
+
+function btnCard(num1, num2) {
+    num1 = 1;
+    num2 = 2;
+
+    console.log(num1 + num2);
 }

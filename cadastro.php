@@ -9,8 +9,8 @@
             border-radius: 10%;
             width: 3%;
             border: none;
-            background-color: green;
             color: white;
+            border: none;
         }
     </style>
 </head>
@@ -51,12 +51,18 @@
         </div>
         <div>
             <h4 style="margin-top: 2%;">Aproxime o cartão</h4>
-            <input type="button" id="cadastrarCard" onclick="btnColor()">
+            <input type="button" id="cadastrarCard" onclick="mudar()">
         </div>
 
         <button type="submit" class="btn btn-primary" id="btnCard">Cadastrar</button>
     </form>
-    <script src="js/estilo.js"></script>
+    <script>
+        let Card = document.getElementById('cadastrarCard');
+
+        function mudar() {
+
+        }
+    </script>
 </body>
 
 </html>
