@@ -38,10 +38,11 @@ $hard = $decoded["hardware_serial"];
 $por =  $decoded["port"];
 $cout = $decoded["counter"];
 $payR = $decoded["payload_raw"];
+$rfid = $decoded["payload_fields"]["rfid"];
 
-fwrite($fp,PHP_EOL." Valores JSON".PHP_EOL."app_id= ".$app.PHP_EOL. "dev_id= ".$dev.PHP_EOL. "hardware_serial= ".$hard.PHP_EOL. "port= ".$por.PHP_EOL. "counter= ". $cout.PHP_EOL. "payload_raw= ".$payR.PHP_EOL. "Fim");
+fwrite($fp,PHP_EOL." Valores JSON".PHP_EOL."app_id= ".$app.PHP_EOL. "dev_id= ".$dev.PHP_EOL. "hardware_serial= ".$hard.PHP_EOL. "port= ".$por.PHP_EOL. "counter= ". $cout.PHP_EOL. "payload_raw= ".$payR.PHP_EOL. "payload_fields= ".$rfid .PHP_EOL. "Fim");
 
-//fwrite($fp,"insert into dados (app_id, dev_id, hardware_serial, port, counter, payload_raw) values ('{$app}', '{$dev}', '{$hard}', '{$por}', '{$cout}', '{$payR}')");
+//fwrite($fp,"insert into dados (app_id, dev_id, hardware_serial, port, counter, payload_raw) values ('{$app}', '{$dev}', '{$hard}', '{$por}', '{$cout}', '{$payR}', '{$rfid}')");
 
  
 //If json_decode failed, the JSON is invalid.
@@ -66,7 +67,7 @@ fclose($fp);
 		die("Erro: ".$conn->connect_error);
 	}
 	
-    $sql = "insert into dados (app_id, dev_id, hardware_serial, port, counter, payload_raw) values ('{$app}', '{$dev}', '{$hard}', '{$por}', '{$cout}', '{$payR}')";//insere no banco
+    $sql = "insert into dados (app_id, dev_id, hardware_serial, port, counter, payload_raw, rfid) values ('{$app}', '{$dev}', '{$hard}', '{$por}', '{$cout}', '{$payR}', '{$rfid}')";//insere no banco
     $result = $conn ->query($sql);//faz a conexão com o banco
         
 

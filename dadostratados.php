@@ -6,7 +6,7 @@
 $resultado_pes = "SELECT * FROM `dados`";//select do banco de dados da tabela cadastro
 $pesquisa_nome = mysqli_query($conn, $resultado_pes); //conexao com o banco de dados
 
-  $sql = "SELECT * FROM `dados` ORDER BY `app_id`.`dev_id`. `hardware_serial`.`port`.`counter`.`payload_raw` DESC"; //ordenando o select
+  $sql = "SELECT * FROM `dados` ORDER BY `app_id`.`dev_id`. `hardware_serial`.`port`.`counter`.`payload_raw`.`rfid` DESC"; //ordenando o select
   $res = $conn -> query($resultado_pes); //resposta do banco de dados
   $qtd = $res -> num_rows; //exibir a quantidade de cadastrados
 
@@ -24,13 +24,14 @@ $pesquisa_nome = mysqli_query($conn, $resultado_pes); //conexao com o banco de d
                     <!-- aqui inicia a tabela de saída-->
                     <thead>
                         <tr>
-                            <th scope='col'>$qtd</th>
-                            <th scope='col'>add_id</th>
-                            <th scope='col'>dev_id</th>
-                            <th scope='col'>hardware_serial</th>
-                            <th scope='col'>port</th>
-                            <th scope='col'>counter</th>
-                            <th scope='col'>payload_raw</th>
+                            <th scope='col' style='width:6%; text-align:center'>$qtd</th>
+                            <th scope='col' style='width: 15.2%; text-align:center;'>add_id</th>
+                            <th scope='col' style='width: 15.2%; text-align:center;'>dev_id</th>
+                            <th scope='col' style='width: 20.8%; text-align:center;'>hardware_serial</th>
+                            <th scope='col' style='width:7.6%; text-align:center'>port</th>
+                            <th scope='col' style='width:7.6%; text-align:center'>counter</th>
+                            <th scope='col' style='width: 12.2%; text-align:center;'>payload_raw</th>
+                            <th scope='col' style='text-align:center;'>rfid</th>
                         </tr>
                     </thead>
                 </table>
@@ -50,13 +51,14 @@ $pesquisa_nome = mysqli_query($conn, $resultado_pes); //conexao com o banco de d
         <table class='table table-striped table-bordered'>
         <tbody>
             <tr>
-                <th scope='row'>$row[idDado]</th>
-                <td>$row[app_id]</td>
-                <td>$row[dev_id]</td>
-                <td>$row[hardware_serial]</td>
-                <td>$row[port]</td>
-                <td>$row[counter]</td>
-                <td>$row[payload_raw]</td>
+                <th scope='row' style='width:2%; text-align:center;'>$row[idDado]</th>
+                <td scope='row' style='width:10%;text-align:center;'>$row[app_id]</td>
+                <td scope='row' style='width:10%; text-align:center;'>$row[dev_id]</td>
+                <td scope='row' style='width:10%; text-align:center;'>$row[hardware_serial]</td>
+                <td scope='row' style='width:5%; text-align:center;'>$row[port]</td>
+                <td scope='row' style='width:5%; text-align:center;'>$row[counter]</td>
+                <td scope='row' style='width:8%; text-align:center;'>$row[payload_raw]</td>
+                <td scope='row' style='width:10%; text-align:center;'>$row[rfid]</td>
                 
             </tr>
         </tbody>
