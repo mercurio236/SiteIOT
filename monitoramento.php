@@ -34,17 +34,21 @@
 			}
 			print "</div>";
 	//$pesquisar = @$_REQUEST['pesquisar'];
-	$resultado_pes_ent = "SELECT e.idUsuario,c.nomeUsuario,e.dataEntrada,e.horaEntrada,s.nomeSetor,c.Card_Cad 
-						  FROM entrada e, cadastro c, tb_setor s
-						  WHERE e.idSetor = s.idSetor AND
-								e.idUsuario = c.idUsuario
-						  ORDER BY e.idUsuario";//select do banco de dados da tabela entrada com o join nas tabelas tb_setor e cadastro
+	$resultado_pes_ent = "SELECT C.id_cadastro,C.no_usuario,O.dt_ocorrencia,O.hr_ocorrencia,D.no_localizacao,C.cd_cartao 
+						  FROM tb_ocorrencia O, tb_cadastro C, tb_dispositivo D
+						  WHERE O.fk_dispositivo = D.id_dispositivo AND
+								O.fk_cadastro = C.id_cadastro AND
+								O.st_ocorrencia = 'e'
+						  ORDER BY C.id_cadastro";//select do banco de dados da tb_ocorrencia com o join nas tabelas
+												  //tb_ocorrencia e tb_cadastro
 	$pesquisa_nome_ent = mysqli_query($conn, $resultado_pes_ent); //conexao com o banco de dados
-	$resultado_pes_sai = "SELECT sa.idUsuario,c.nomeUsuario,sa.dataSaida,sa.horaSaida,s.nomeSetor,c.Card_Cad 
-						  FROM saida sa, cadastro c, tb_setor s
-						  WHERE sa.idSetor = s.idSetor AND
-								sa.idUsuario = c.idUsuario
-						  ORDER BY sa.idUsuario";//select do banco de dados da tabela saida com o join na tabela tb_setor e cadastro
+	$resultado_pes_sai = "SELECT C.id_cadastro,C.no_usuario,O.dt_ocorrencia,O.hr_ocorrencia,D.no_localizacao,C.cd_cartao 
+						  FROM tb_ocorrencia O, tb_cadastro C, tb_dispositivo D
+						  WHERE O.fk_dispositivo = D.id_dispositivo AND
+								O.fk_cadastro = C.id_cadastro AND
+								O.st_ocorrencia = 's'
+						  ORDER BY C.id_cadastro";//select do banco de dados da tb_ocorrencia com o join nas tabelas
+												  //tb_ocorrencia e tb_cadastro
 	$pesquisa_nome_sai = mysqli_query($conn, $resultado_pes_sai); //conexao com o banco de dados
 	$sql = "SELECT * FROM `cadastro` ORDER BY `cadastro`.`nomeUsuario`. `setor`. DESC"; //ordenando o select
 	$resEnt = $conn -> query($resultado_pes_ent); //resposta do banco de dados para a query de entradas
@@ -86,7 +90,7 @@
                             <th scope='col'  style='width:34.1%;'>Nome</th>
                             <th scope='col'  style='width:11.4%;'>Data</th>
                             <th scope='col'  style='width:11.3%;'>Hora</th>
-                            <th scope='col'  style='width:28.4%;'>Setor</th>
+                            <th scope='col'  style='width:28.4%;'>Local</th>
                             <th scope='col'>Card</th>
                         </tr>
                     </thead>
@@ -106,24 +110,24 @@
 		while($rows_pesquisa = mysqli_fetch_array($pesquisa_nome_ent)){
 			while($row = $resEnt -> fetch_assoc()){
 				//print "foi encontrado " .$row["nomeUsuario"]. $row["setor"];
-				print " <th scope='row' style='width:3%;'>$row[idUsuario]</th>
-						<td style='width:30%;'>$row[nomeUsuario]</td>
-						<td style='width:10%;'>$row[dataEntrada]</td>
-						<td style='width:10%;'>$row[horaEntrada]</td>
-						<td style='width:25%;'>$row[nomeSetor]</td>
-						<td style='width:10%;'>$row[Card_Cad]</td>";
+				print " <th scope='row' style='width:3%;'>$row[id_cadastro]</th>
+						<td style='width:30%;'>$row[no_usuario]</td>
+						<td style='width:10%;'>$row[dt_ocorrencia]</td>
+						<td style='width:10%;'>$row[hr_ocorrencia]</td>
+						<td style='width:25%;'>$row[no_localizacao]</td>
+						<td style='width:10%;'>$row[cd_cartao]</td>";
 			}
 		}
 	}else{
 		while($rows_pesquisa = mysqli_fetch_array($pesquisa_nome_sai)){
 			while($row = $resSai -> fetch_assoc()){
 				//print "foi encontrado " .$row["nomeUsuario"]. $row["setor"];
-				print " <th scope='row' style='width:3%;'>$row[idUsuario]</th>
-						<td style='width:30%;'>$row[nomeUsuario]</td>
-						<td style='width:10%;'>$row[dataSaida]</td>
-						<td style='width:10%;'>$row[horaSaida]</td>
-						<td style='width:25%;'>$row[nomeSetor]</td>
-						<td style='width:10%;'>$row[Card_Cad]</td>";
+				print " <th scope='row' style='width:3%;'>$row[id_cadastro]</th>
+						<td style='width:30%;'>$row[no_usuario]</td>
+						<td style='width:10%;'>$row[dt_ocorrencia]</td>
+						<td style='width:10%;'>$row[hr_ocorrencia]</td>
+						<td style='width:25%;'>$row[no_localizacao]</td>
+						<td style='width:10%;'>$row[cd_cartao]</td>";
 			}
 		}
 	}

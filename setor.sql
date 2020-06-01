@@ -24,84 +24,82 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `cadastro`
+-- Estrutura da tabela `tb_cadastro`
 --
 
-CREATE TABLE `cadastro` (
-  `idUsuario` int(10) UNSIGNED NOT NULL,
-  `idSetor` int(10) UNSIGNED,
-  `nomeUsuario` varchar(200) NOT NULL,
-  `Card_Cad` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Inserindo dados de teste na tabela `cadastro`
---
-
-INSERT INTO `cadastro` (`idUsuario`, `idSetor`, `nomeUsuario`, `Card_Cad`) VALUES
-(1, 1, 'Pedro Paulo Nascimento', '111'),
-(2, 2, 'Ana Cristina de Paula', '222'),
-(3, 1, 'Arley Souto Aguiar', '333'),
-(4, 3, 'Saulo Magalhaes de Paula', '444'),
-(5, 4, 'Joao da Silva', '555'),
-(6, 4, 'Jose Maria', '666'),
-(7, 5, 'Renato Nascimento Souza', '777'),
-(8, 6, 'Maria das Graças de sousa', '888'),
-(9, 7, 'Matheus de Freitas Magalhes', '999');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `entrada`
---
-
-CREATE TABLE `entrada` (
-  `idEntrada` int(11) NOT NULL,
-  `idSetor` int(10) UNSIGNED,
-  `idUsuario` int(10) UNSIGNED,
-  `nomeEntrada` varchar(200) NOT NULL,
-  `dataEntrada` date NOT NULL,
-  `horaEntrada` time NOT NULL
+CREATE TABLE `tb_cadastro` (
+  `id_cadastro` int(10) UNSIGNED NOT NULL,
+  `no_usuario` varchar(200) NOT NULL,
+  `cd_cartao` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `saida`
+-- Inserindo dados de teste na tabela `tb_cadastro`
 --
 
-CREATE TABLE `saida` (
-  `idSaida` int(11) NOT NULL,
-  `idSetor` int(10) UNSIGNED,
-  `idUsuario` int(10) UNSIGNED, 
-  `nomeSaida` varchar(200) NOT NULL,
-  `dataSaida` date NOT NULL,
-  `horaSaida` time NOT NULL
+INSERT INTO `tb_cadastro` (`id_cadastro`, `no_usuario`, `cd_cartao`) VALUES
+(1, 'Pedro Paulo Nascimento', '111'),
+(2, 'Ana Cristina de Paula', '222'),
+(3, 'Arley Souto Aguiar', '333'),
+(4, 'Saulo Magalhaes de Paula', '444'),
+(5, 'Joao da Silva', '555'),
+(6, 'Jose Maria', '666'),
+(7, 'Renato Nascimento Souza', '777'),
+(8, 'Maria das Graças de sousa', '888'),
+(9, 'Matheus de Freitas Magalhes', '999');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tb_ocorrencia`
+--
+
+CREATE TABLE `tb_dispositivo` (
+  `id_dispositivo` int(10) UNSIGNED NOT NULL,
+  `no_dispositivo` varchar(100) NOT NULL,
+  `no_localizacao` varchar(200) NOT NULL,
+  `nu_andar` int(10)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tb_setor`
+-- Inserindo dados de teste na tabela `tb_dispositivo`
 --
 
-CREATE TABLE `tb_setor` (
-  `idSetor` int(10) UNSIGNED NOT NULL,
-  `nomeSetor` varchar(200) NOT NULL
+INSERT into `tb_dispositivo`(`id_dispositivo`,`no_dispositivo`,`no_localizacao`,`nu_andar`) VALUES
+(1,'111-111','Sala de Reunioes',1),
+(2,'222-222','Sala de TI A',1),
+(3,'333-333','Sala de TI B',2),
+(4,'444-444','Sala da Recepcao',2),
+(5,'555-555','Despensa',3);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tb_ocorrencia`
+--
+
+CREATE TABLE `tb_ocorrencia` (
+  `id_ocorrencia` int(11) NOT NULL,
+  `fk_dispositivo` int(10) UNSIGNED,
+  `fk_cadastro` int(10) UNSIGNED,
+  `dt_ocorrencia` date NOT NULL,
+  `hr_ocorrencia` time NOT NULL,
+  `st_ocorrencia` char(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Inserindo dados de teste na tabela `tb_setor`
+-- Inserindo dados de teste na tabela `tb_ocorrencia`
 --
 
-INSERT into `tb_setor`(`idSetor`,`nomeSetor`) VALUES
-(1,'Arquitetura'),
-(2,'Eletronica'),
-(3,'Segurança'),
-(4,'Desenvolvimento'),
-(5,'Engenharia de Software'),
-(6,'IBTI'),
-(7,'Sistemas da Informação'); 
+INSERT into `tb_ocorrencia`(`id_ocorrencia`,`fk_dispositivo`,`fk_cadastro`,`dt_ocorrencia`,`hr_ocorrencia`,`st_ocorrencia`) VALUES
+(1,1,1,CURRENT_DATE,CURRENT_TIME,'e'),
+(2,1,1,CURRENT_DATE,ADDTIME(CURRENT_TIME,"550"),'s');
 
 -- --------------------------------------------------------
 
@@ -110,78 +108,52 @@ INSERT into `tb_setor`(`idSetor`,`nomeSetor`) VALUES
 --
 
 --
--- Índices para tabela `cadastro`
+-- Índices para tabela `tb_cadastro`
 --
-ALTER TABLE `cadastro`
-  ADD PRIMARY KEY (`idUsuario`);
+ALTER TABLE `tb_cadastro`
+  ADD PRIMARY KEY (`id_cadastro`);
 
 --
--- Índices para tabela `entrada`
+-- Índices para tabela `tb_ocorrencia`
 --
-ALTER TABLE `entrada`
-  ADD PRIMARY KEY (`idEntrada`);
-
---
--- Índices para tabela `saida`
---
-ALTER TABLE `saida`
-  ADD PRIMARY KEY (`idSaida`);
+ALTER TABLE `tb_ocorrencia`
+  ADD PRIMARY KEY (`id_ocorrencia`);
 
 --
 -- Índices para tabela `tb_setor`
 --
-ALTER TABLE `tb_setor`
-  ADD PRIMARY KEY (`idSetor`);
+ALTER TABLE `tb_dispositivo`
+  ADD PRIMARY KEY (`id_dispositivo`);
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT de tabela `cadastro`
+-- AUTO_INCREMENT de tabela `tb_cadastro`
 --
-ALTER TABLE `cadastro`
-  MODIFY `idUsuario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+ALTER TABLE `tb_cadastro`
+  MODIFY `id_cadastro` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT de tabela `entrada`
+-- AUTO_INCREMENT de tabela `tb_ocorrencia`
 --
-ALTER TABLE `entrada`
-  MODIFY `idEntrada` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `tb_ocorrencia`
+  MODIFY `id_ocorrencia` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `saida`
+-- AUTO_INCREMENT de tabela `tb_dispositivo`
 --
-ALTER TABLE `saida`
-  MODIFY `idSaida` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `tb_dispositivo`
+  MODIFY `id_dispositivo` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `tb_setor`
+-- Cria chave-estrangeira entre as tabelas de `tb_ocorrencia` e `tb_dispositivo`
+-- Cria chave-estrangeira entre as tabelas de `tb_ocorrencia` e `tb_cadastro`
 --
-ALTER TABLE `tb_setor`
-  MODIFY `idSetor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-  
---
--- Cria chave-estrangeira entre as tabelas de `cadastro` e `tb_setor`
---
-ALTER TABLE `cadastro`
-ADD FOREIGN KEY (`idSetor`) REFERENCES `tb_setor`(`idSetor`);
-
---
--- Cria chave-estrangeira entre as tabelas de `entrada` e `tb_setor`
--- Cria chave-estrangeira entre as tabelas de `entrada` e `cadastro`
---
-ALTER TABLE `entrada`
-ADD FOREIGN KEY (`idSetor`) REFERENCES `tb_setor`(`idSetor`),
-ADD FOREIGN KEY (`idUsuario`) REFERENCES `cadastro`(`idUsuario`);
-
---
--- Cria chave-estrangeira entre as tabelas de `saida` e `tb_setor`
--- Cria chave-estrangeira entre as tabelas de `saida` e `cadastro`
---
-ALTER TABLE `saida`
-ADD FOREIGN KEY (`idSetor`) REFERENCES `tb_setor`(`idSetor`),
-ADD FOREIGN KEY (`idUsuario`) REFERENCES `cadastro`(`idUsuario`);
+ALTER TABLE `tb_ocorrencia`
+ADD FOREIGN KEY (`fk_dispositivo`) REFERENCES `tb_dispositivo`(`id_dispositivo`),
+ADD FOREIGN KEY (`fk_cadastro`) REFERENCES `tb_cadastro`(`id_cadastro`);
 
 COMMIT;
 
