@@ -14,10 +14,9 @@
 
         <!-- Imagem e texto do menu -->
         <nav class="navbar justify-content-center navbar-dark bg-dark">
-            <a class="nav-link" style="color: white;" href="index.php?page=home">Home</a>
             <a class="nav-link" style="color:white;" href="index.php?page=cadastro">Cadastro</a>
             <a class="nav-link" style="color:white;" href="index.php?page=monitoramento">Monitoramento</a>
-            <a class="nav-link" style="color:white;" href="index.php?page=login">Login</a>
+            
 
         </nav>
 
@@ -30,24 +29,17 @@
 						include("config.php");//responsavel por fazer a conexão no banco
 						
 						switch(@$_REQUEST["page"]){//responsavel por alternar entre as paginas
-							case "cadastro":
-								include("cadastro.php");
-                            break;
-                            
 							case "monitoramento":
 								include("monitoramento.php");
-							break;
+                            break;
 							
 							case "info":
 								include("info.php");
-							break;
+                            break;
+                            
+                            default:
+                                include("cadastro.php");
 
-							case "login":
-								include("login.php");
-							break;
-
-							default:
-								include("home.php");
 						}
 					?>
                 </div>
