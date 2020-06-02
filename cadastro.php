@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <style>
         #cadastrarCard {
             border-radius: 10%;
@@ -17,7 +17,7 @@
             color: white;
         }
     </style>
-	<?php
+    <?php
 		//Checa se flag cadastrar foi setada
 		if(isset($_POST["cadastrar"])){
 			unset($_POST["cadastrar"]);
@@ -61,14 +61,16 @@
 			}
 		}
 	?>
-	<!--Script que incializa as toasts-->
-	<script>
-		$(document).ready(function(){
-			//Modifica o tempo de hide das toasts
-			$('.toast').toast({delay: 5000});
-			$('.toast').toast('show');
-		});
-	</script>
+        <!--Script que incializa as toasts-->
+        <script>
+            $(document).ready(function() {
+                //Modifica o tempo de hide das toasts
+                $('.toast').toast({
+                    delay: 5000
+                });
+                $('.toast').toast('show');
+            });
+        </script>
 </head>
 
 <body>
@@ -82,13 +84,16 @@
             <div class="form-group col-md-6">
                 <label for="inputEmail4">Nome completo</label>
                 <input type="text" class="form-control" id="nomeUsuario" name="nomeUsuario" required>
+
+                <label style="margin-top:5%;" for="inputEmail4">Cadastrar Cartão(RFID)</label>
+                <input type="text" class="form-control" id="cardUsu" name="cardUsu" required>
             </div>
         </div>
         <div>
             <h4 style="margin-top: 2%;">Aproxime o cartão</h4>
             <input type="button" id="cadastrarCard" onclick="btnColor()">
         </div>
-        <button type="submit" name="cadastrar" class="btn btn-primary" id="btnCard" >Cadastrar</button>
+        <button type="submit" name="cadastrar" class="btn btn-primary" id="btnCard">Cadastrar</button>
     </form>
     <script src="js/estilo.js"></script>
 </body>
