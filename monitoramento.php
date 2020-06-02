@@ -18,20 +18,42 @@
 	<form style='margin-top: 5%;' method='POST' action='index.php?page=monitoramento'>
 		<div class='container'>";
 			//Decide qual label mostrar de acordo com a opção selecionada
-			if (strcmp($tipoMov,"entrada") == 0){
-				print"<input type='radio' id='entrada' name='tipoMovimento' value='entrada' checked='checked' onchange='this.form.submit();'>
-					  <label for='entrada'>Entradas</label>";
-			}else{
-				print"<input type='radio' id='entrada' name='tipoMovimento' value='entrada' onchange='this.form.submit();'>
-					  <label for='entrada'>Entradas</label>";
-			}
-			if (strcmp($tipoMov,"saida") == 0){
-				print"<input type='radio' id='saida' name='tipoMovimento' value='saida' checked='checked' onchange='this.form.submit();'>
-					  <label for='saida'>Saídas</label>";
-			}else{
-				print"<input type='radio' id='saida' name='tipoMovimento' value='saida' onchange='this.form.submit();'>
-					  <label for='saida'>Saídas</label>";
-			}
+			if (strcmp($tipoMov,"entrada") == 0){//radio botão pagina entrada primeira pagina
+				print"
+				<span class='border border-dark' style='border-radius:10px;'> 
+				<input style='margin-right:1px;' type='radio' id='entrada' name='tipoMovimento' value='entrada' checked='checked' onchange='this.form.submit();'>
+					  <label for='entrada'>Entradas</label>
+				</span>
+					  
+				";
+			}//fim do botão radio primeira entrada
+
+			else{//radio botão entrada segunda pagina
+				print"
+				<span class='border border-dark' style='border-radius:10px;'>
+				<input style='margin-right:1px;' type='radio' id='entrada' name='tipoMovimento' value='entrada' onchange='this.form.submit();'>
+					  <label for='entrada'>Entradas</label>
+				</span>
+					  ";	  
+			}//fim do radio entrada
+
+			if (strcmp($tipoMov,"saida") == 0){//radio botão saída primeira pagina
+				print"
+				<span class='border border-dark' style='border-radius:10px; margin-left:2%;'>
+				<input style='margin-left:1px; margin-right:0%;' type='radio' id='saida' name='tipoMovimento' value='saida' checked='checked' onchange='this.form.submit();'>
+					  <label for='saida'>Saídas</label>
+				</span>
+					  ";
+			}//fim do saida
+
+			else{//radio botão segunda pagina
+				print"
+				<span class='border border-dark' style='border-radius:10px; margin-left:2%;'>
+				<input style='margin-left:1px; margin-right:0%;' type='radio' id='saida' name='tipoMovimento' value='saida' onchange='this.form.submit();'>
+					  <label for='saida'>Saídas</label>
+				</span>
+					  ";
+			}//fim do botão radio saída
 			print "</div>";
 	//$pesquisar = @$_REQUEST['pesquisar'];
 	$resultado_pes_ent = "SELECT C.id_cadastro,C.no_usuario,O.dt_ocorrencia,O.hr_ocorrencia,D.no_localizacao,C.cd_cartao 
@@ -107,10 +129,7 @@
 						<td>$row[cd_cartao]</td>
 				</tr>
 			</tbody>
-			";
-		
-					
-				
+			";	
 			}//fim do while 2
 		}//fim do while 1
 	}//fim do if
@@ -131,33 +150,6 @@
 			}
 		}
 	}
-	print"			</tr>
-			</tbody>
-		</table>
-    
-		</div>
-		</div>
-		</div>";//fim da lista
-
-   /* print "
-    <div class='container' style='margin-top: -1.5%;'>
-        <div class='row'>
-        <div class='col-6'>
-        <table class='table table-striped table-bordered'>
-        <tbody>
-            <tr>
-                <th scope='row'>1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>setor</td>
-            </tr>
-        </tbody>
-    </table>
-    
-    </div>
-    </div>
-    </div>";*/
     }else{
 		print "<p>Sem registros!</p>";//caso não tenha resultado para ser exibido
 	}
