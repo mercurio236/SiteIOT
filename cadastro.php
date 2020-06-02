@@ -46,7 +46,7 @@
 			}
 			
 			else{//toast de que não possivel cadastrar no banco
-				print"  <div class='toast' data_autohide='false' style='position: absolute; top: 0; right: 0;'>
+				print"  <div class='toast' data_autohide='false' style='position: absolute; top: 0; right: 0; '>
 						   <div class='toast-header'>
 							  <strong class='mr-auto'>Cadastro</strong>
 							  <small>11 mins ago</small>
@@ -87,6 +87,13 @@
 
                 <label style="margin-top:5%;" for="inputEmail4">Cadastrar Cartão(RFID)</label>
                 <input type="text" class="form-control" id="cardUsu" name="cardUsu" required>
+            </div>
+            <div class="form-group col-md-6">
+                <div class="card" style="margin-top: 6%; height: 78%;">
+                    <div class="card-body" style="text-align: center;">
+                        Aproxime o Cartão
+                    </div>
+                </div>
             </div>
         </div>
 
