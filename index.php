@@ -32,10 +32,6 @@
 							case "monitoramento":
 								include("monitoramento.php");
                             break;
-							
-							case "info":
-								include("info.php");
-                            break;
                             
                             default:
                                 include("cadastro.php");
