@@ -89,10 +89,7 @@
                 <input type="text" class="form-control" id="cardUsu" name="cardUsu" required>
             </div>
         </div>
-        <div>
-            <h4 style="margin-top: 2%;">Aproxime o cartão</h4>
-            <input type="button" id="cadastrarCard" onclick="btnColor()">
-        </div>
+
         <button type="submit" name="cadastrar" class="btn btn-primary" id="btnCard">Cadastrar</button>
     </form>
     <script src="js/estilo.js"></script>
