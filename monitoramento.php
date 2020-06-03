@@ -151,7 +151,7 @@
 		}
 	}
     }else{
-		print "<p>Sem registros!</p>";//caso não tenha resultado para ser exibido
+		print "<p>Selecione para ver a movimentação</p>";//caso não tenha resultado para ser exibido
 	}
 
 ?>
