@@ -18,20 +18,42 @@
 	<form style='margin-top: 5%;' method='POST' action='index.php?page=monitoramento'>
 		<div class='container'>";
 			//Decide qual label mostrar de acordo com a opção selecionada
-			if (strcmp($tipoMov,"entrada") == 0){
-				print"<input type='radio' id='entrada' name='tipoMovimento' value='entrada' checked='checked' onchange='this.form.submit();'>
-					  <label for='entrada'>Entradas</label>";
-			}else{
-				print"<input type='radio' id='entrada' name='tipoMovimento' value='entrada' onchange='this.form.submit();'>
-					  <label for='entrada'>Entradas</label>";
-			}
-			if (strcmp($tipoMov,"saida") == 0){
-				print"<input type='radio' id='saida' name='tipoMovimento' value='saida' checked='checked' onchange='this.form.submit();'>
-					  <label for='saida'>Saídas</label>";
-			}else{
-				print"<input type='radio' id='saida' name='tipoMovimento' value='saida' onchange='this.form.submit();'>
-					  <label for='saida'>Saídas</label>";
-			}
+			if (strcmp($tipoMov,"entrada") == 0){//radio botão pagina entrada primeira pagina
+				print"
+				<span class='border border-dark' style='border-radius:10px;'> 
+				<input style='margin-right:1px;' type='radio' id='entrada' name='tipoMovimento' value='entrada' checked='checked' onchange='this.form.submit();'>
+					  <label for='entrada'>Entradas</label>
+				</span>
+					  
+				";
+			}//fim do botão radio primeira entrada
+
+			else{//radio botão entrada segunda pagina
+				print"
+				<span class='border border-dark' style='border-radius:10px;'>
+				<input style='margin-right:1px;' type='radio' id='entrada' name='tipoMovimento' value='entrada' onchange='this.form.submit();'>
+					  <label for='entrada'>Entradas</label>
+				</span>
+					  ";	  
+			}//fim do radio entrada
+
+			if (strcmp($tipoMov,"saida") == 0){//radio botão saída primeira pagina
+				print"
+				<span class='border border-dark' style='border-radius:10px; margin-left:2%;'>
+				<input style='margin-left:1px; margin-right:0%;' type='radio' id='saida' name='tipoMovimento' value='saida' checked='checked' onchange='this.form.submit();'>
+					  <label for='saida'>Saídas</label>
+				</span>
+					  ";
+			}//fim do saida
+
+			else{//radio botão segunda pagina
+				print"
+				<span class='border border-dark' style='border-radius:10px; margin-left:2%;'>
+				<input style='margin-left:1px; margin-right:0%;' type='radio' id='saida' name='tipoMovimento' value='saida' onchange='this.form.submit();'>
+					  <label for='saida'>Saídas</label>
+				</span>
+					  ";
+			}//fim do botão radio saída
 			print "</div>";
 	//$pesquisar = @$_REQUEST['pesquisar'];
 	$resultado_pes_ent = "SELECT C.id_cadastro,C.no_usuario,O.dt_ocorrencia,O.hr_ocorrencia,D.no_localizacao,C.cd_cartao 
@@ -68,98 +90,68 @@
 	if(($qtdEnt > 0 && strcmp($tipoMov,"entrada")) == 0 ||
 	   ($qtdSai > 0 && strcmp($tipoMov,"saida") == 0)){
 	//estilo de exibição de pesquisa
-	print "
-	<div class='container' style='margin-top: 8%;'>
-		<!--foi colocado um style na tag para afastar as tabelas do topo-->
-        <div class='row'>
-
-            <div class='col'>
-               <!--Tabela de entrada, aqui defeine a largura do Grid em 50% -->";
+	
 				if(strcmp($tipoMov,"entrada") == 0){
 					print"<h2 style='text-align:center;'>Entradas</h2>";
 				}else{
 					print"<h2 style='text-align:center;'>Saidas</h2>";
 				}
-				print"
+				//pesquisa do banco com resultado de quantidade
+	
+		
+							//print "foi encontrado " .$row["nomeUsuario"]. $row["setor"];
+			 print"
                 <!--Titulo da tabela-->
-                <table class='table table-striped table-bordered'>
+                <table class='table table-sm'>
                     <!-- aqui inicia a tabela de saída-->
                     <thead>
                         <tr>
-                            <th scope='col'  style='width:3.7%;'>$qtd</th>
-                            <th scope='col'  style='width:34.1%;'>Nome</th>
-                            <th scope='col'  style='width:11.4%;'>Data</th>
-                            <th scope='col'  style='width:11.3%;'>Hora</th>
-                            <th scope='col'  style='width:28.4%;'>Local</th>
+                            <th scope='col' >$qtd</th>
+                            <th scope='col' >Nome</th>
+                            <th scope='col' >Data</th>
+                            <th scope='col' >Hora</th>
+                            <th scope='col' >Local</th>
                             <th scope='col'>Card</th>
                         </tr>
-                    </thead>
-                </table>
-            </div>
-  
-	";
-	print "
-		<div class='container' style='margin-top: -1.5%;'>
-			<div class='row'>
-			<div class='col-12'>
-			<table class='table table-striped table-bordered'>
-			<tbody>
-				<tr>";
-	//pesquisa do banco com resultado de quantidade
-    if (strcmp($tipoMov,"entrada") == 0){
+                    </thead>";
+			
+	if (strcmp($tipoMov,"entrada") == 0){
 		while($rows_pesquisa = mysqli_fetch_array($pesquisa_nome_ent)){
 			while($row = $resEnt -> fetch_assoc()){
-				//print "foi encontrado " .$row["nomeUsuario"]. $row["setor"];
-				print " <th scope='row' style='width:3%;'>$row[id_cadastro]</th>
-						<td style='width:30%;'>$row[no_usuario]</td>
-						<td style='width:10%;'>$row[dt_ocorrencia]</td>
-						<td style='width:10%;'>$row[hr_ocorrencia]</td>
-						<td style='width:25%;'>$row[no_localizacao]</td>
-						<td style='width:10%;'>$row[cd_cartao]</td>";
-			}
-		}
-	}else{
+		
+			print"<tbody>
+				<tr>
+					<th scope='row'>$row[id_cadastro]</th>
+						<td>$row[no_usuario]</td>
+						<td>$row[dt_ocorrencia]</td>
+						<td>$row[hr_ocorrencia]</td>
+						<td>$row[no_localizacao]</td>
+						<td>$row[cd_cartao]</td>
+				</tr>
+			</tbody>
+			";	
+			}//fim do while 2
+		}//fim do while 1
+	}//fim do if
+	else{
 		while($rows_pesquisa = mysqli_fetch_array($pesquisa_nome_sai)){
 			while($row = $resSai -> fetch_assoc()){
-				//print "foi encontrado " .$row["nomeUsuario"]. $row["setor"];
-				print " <th scope='row' style='width:3%;'>$row[id_cadastro]</th>
-						<td style='width:30%;'>$row[no_usuario]</td>
-						<td style='width:10%;'>$row[dt_ocorrencia]</td>
-						<td style='width:10%;'>$row[hr_ocorrencia]</td>
-						<td style='width:25%;'>$row[no_localizacao]</td>
-						<td style='width:10%;'>$row[cd_cartao]</td>";
+				print"<tbody>
+				<tr>
+					<th scope='row'>$row[id_cadastro]</th>
+						<td>$row[no_usuario]</td>
+						<td>$row[dt_ocorrencia]</td>
+						<td>$row[hr_ocorrencia]</td>
+						<td>$row[no_localizacao]</td>
+						<td>$row[cd_cartao]</td>
+				</tr>
+			</tbody>
+			";
 			}
 		}
 	}
-	print"			</tr>
-			</tbody>
-		</table>
-    
-		</div>
-		</div>
-		</div>";//fim da lista
-
-   /* print "
-    <div class='container' style='margin-top: -1.5%;'>
-        <div class='row'>
-        <div class='col-6'>
-        <table class='table table-striped table-bordered'>
-        <tbody>
-            <tr>
-                <th scope='row'>1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>setor</td>
-            </tr>
-        </tbody>
-    </table>
-    
-    </div>
-    </div>
-    </div>";*/
     }else{
-		print "<p>Sem registros!</p>";//caso não tenha resultado para ser exibido
+		print "<p>Selecione para ver a movimentação</p>";//caso não tenha resultado para ser exibido
 	}
 
 ?>

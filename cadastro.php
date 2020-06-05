@@ -18,7 +18,10 @@
         }
     </style>
     <?php
+<<<<<<< HEAD
 		include ("toasts.php");
+=======
+>>>>>>> aff28c4569fdd418382985e477a4cddde6988364
 		//Checa se flag cadastrar foi setada
 		if(isset($_POST["cadastrar"])){
 			unset($_POST["cadastrar"]);
@@ -39,7 +42,22 @@
 			}
 			
 			else{//toast de que não possivel cadastrar no banco
+<<<<<<< HEAD
 				print geraToast("Não foi possível cadastrar!");
+=======
+				print"  <div class='toast' data_autohide='false' style='position: absolute; top: 0; right: 0; '>
+						   <div class='toast-header'>
+							  <strong class='mr-auto'>Cadastro</strong>
+							  <small>11 mins ago</small>
+							  <button type='button' class='ml-2 mb-1 close' data-dismiss='toast' aria-label='Close'>
+								  <span aria-hidden='true'>&times;</span>
+							  </button>
+						   </div>
+						   <div class='toast-body'>
+							   Não foi possível cadastrar!
+						   </div>
+						</div>";
+>>>>>>> aff28c4569fdd418382985e477a4cddde6988364
 			}
 		}
 		 /*
@@ -51,6 +69,7 @@
 		}
 		*/
 	?>
+<<<<<<< HEAD
 	<!--Script que incializa as toasts-->
 	<script>
 		$(document).ready(function() {
@@ -61,6 +80,18 @@
 			$('.toast').toast('show');
 		});
 	</script>
+=======
+        <!--Script que incializa as toasts-->
+        <script>
+            $(document).ready(function() {
+                //Modifica o tempo de hide das toasts
+                $('.toast').toast({
+                    delay: 5000
+                });
+                $('.toast').toast('show');
+            });
+        </script>
+>>>>>>> aff28c4569fdd418382985e477a4cddde6988364
 </head>
 
 <body>
@@ -76,7 +107,11 @@
                 <input type="text" class="form-control" id="nomeUsuario" name="nomeUsuario" required>
 
                 <label style="margin-top:5%;" for="inputEmail4">Cadastrar Cartão(RFID)</label>
+<<<<<<< HEAD
                 <input type="text" class="form-control" id="cardUsu" name="cardUsu" readonly required>
+=======
+                <input type="text" class="form-control" id="cardUsu" name="cardUsu" required>
+>>>>>>> aff28c4569fdd418382985e477a4cddde6988364
             </div>
             <div class="form-group col-md-6">
                 <div class="card" style="margin-top: 6%; height: 78%;">
