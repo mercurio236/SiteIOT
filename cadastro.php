@@ -118,7 +118,7 @@
 						}
 					}
 				?>	
-				<input type="text" class="form-control" id="nomeUsuario" name="nomeUsuario">			
+				<input type="text" class="form-control" id="nomeUsuario" name="nomeUsuario" value="<?php echo isset($_POST['nomeUsuario']) ? $_POST['nomeUsuario'] : '' ?>">			
                 <label style="margin-top:5%;" for="inputEmail4">Cadastrar Cartão(RFID)</label>
 				<?php
 					if(isset($_POST["btnCard"])){
